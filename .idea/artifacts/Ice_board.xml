@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="Ice-board">
-    <output-path>$PROJECT_DIR$/out/artifacts/Ice_board</output-path>
-    <root id="archive" name="Ice-board.war">
-      <element id="artifact" artifact-name="Icecream:war exploded" />
-    </root>
-  </artifact>
-</component>
