@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
-<title>JSP 게시판 웹 사이트</title>
+<title>JSP Website</title>
 </head>
 <body>
 	<%
@@ -19,7 +19,7 @@
 		if (userID == null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('로그인을 하세요.')");
+			script.println("alert('Login, please.')");
 			script.println("location.href = 'login.jsp'");
 			script.println("history.back()");
 			script.println("</script>");
@@ -32,7 +32,7 @@
 		if (bbsID == 0) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('유효하지 않는 글입니다.')");
+			script.println("alert('Not vaild.')");
 			script.println("location.href = 'bbs.jsp'");
 			script.println("history.back()");
 			script.println("</script>");
@@ -41,7 +41,7 @@
 		if (!userID.equals(bbs.getUserID())) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('권한이 없습니다.')");
+			script.println("alert('No auth.')");
 			script.println("location.href = 'bbs.jsp'");
 			script.println("history.back()");
 			script.println("</script>");
@@ -51,7 +51,7 @@
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-				script.println("alert('글 삭제에 실패 했습니다.')");
+				script.println("alert('Failed to delete.')");
 				script.println("history.back()");
 				script.println("</script>");
 			} else {
