@@ -6,7 +6,10 @@ public class User {
 	private String userName;
 	private String userGender;
 	private String userEmail;
-	
+	private String userSalt;
+	private int loginFail;
+	private int isLock;
+
 	public String getUserID() {
 		return userID;
 	}
@@ -37,5 +40,20 @@ public class User {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	
+	public String getUserSalt() {
+		return userSalt;
+	}
+	public void setUserSalt(String userSalt) {
+		this.userSalt = userSalt;
+	}
+	public int getLoginFail() {
+		return loginFail;
+	}
+	public void setLoginFail(int loginFail) {this.loginFail = loginFail;}
+	public int getIsLock() {
+		return isLock;
+	}
+	public void setIsLock(int isLock) {
+		this.isLock = isLock;
+	}
 }

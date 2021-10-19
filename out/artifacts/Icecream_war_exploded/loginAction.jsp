@@ -54,6 +54,12 @@
 			script.println("alert('DB error.')");
 			script.println("history.back()");
 			script.println("</script>");
+		} else if (result == 5) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('Login locked.')");
+			script.println("history.back()");
+			script.println("</script>");
 		}
 	%>
 </body>
