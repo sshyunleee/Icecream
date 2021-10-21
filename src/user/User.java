@@ -49,11 +49,7 @@ public class User {
 	public int getLoginFail() {
 		return loginFail;
 	}
-	public void setLoginFail(int loginFail) {this.loginFail = loginFail;}
-	public int getIsLock() {
-		return isLock;
-	}
-	public void setIsLock(int isLock) {
-		this.isLock = isLock;
-	}
+	public void setLoginFail(int loginFail) { this.loginFail = loginFail; }
+	public int getIsLock() { return isLock;}
+	public void setIsLock(int isLock) { this.isLock = isLock; }
 }
