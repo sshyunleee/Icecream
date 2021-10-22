@@ -9,33 +9,25 @@
 <link rel="stylesheet" href="css/custom.css">
 <title>JSP Website</title>
 </head>
-<body>
-	<nav class="navbar navbar-default">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-				aria-expanded="false">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="main.jsp">JSP Website</a>
-		</div>
+<body background="images/bg_menu.jpg">
+	<div class="row center-block">
+		<a class="center-block" href="home.jsp" style="margin: 20px 0 20px 0">
+			<img src="images/baskin-logo.png" height="60">
+		</a>
+	</div>
+	<nav class="navbar-default">
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="main.jsp">Main</a></li>
-				<li><a href="bbs.jsp">Ice-board</a></li>
+			<ul class="nav navbar-nav navbar-left">
+				<li><a style="color: palevioletred" href="login.jsp" ><b>LOGIN</b></a></li>
+				<li><a href="join.jsp"><b>JOIN</b></a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Access<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="login.jsp">Login</a></li>
-						<li class="active"><a href="join.jsp">Join</a></li>
-					</ul>
-				</li>
+				<li class="active"><a href="home.jsp"><b>HOME</b></a></li>
+				<li><a href="bbs.jsp"><b>Q&A</b></a></li>
+				<li><a href="#" onclick="nav_btn()"><b>MENU</b></a></li>
+				<li><a href="#" onclick="nav_btn()"><b>EVENT</b></a></li>
+				<li><a href="#" onclick="nav_btn()"><b>STORE</b></a></li>
+				<li><a href="#" onclick="nav_btn()"><b>ABOUT &nbsp; </b></a></li>
 			</ul>
 		</div>
 	</nav>

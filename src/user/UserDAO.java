@@ -7,8 +7,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import static java.lang.System.out;
-
 
 public class UserDAO {
 	
@@ -43,26 +41,29 @@ public class UserDAO {
 				if(check){
 					return 5;
 				}
+				// Password hash
 				String Salt = rs.getString(2);
 				String Password = userPassword;
-				// 비밀번호 해싱
-				MessageDigest md = MessageDigest.getInstance("SHA-256");// SHA-256 해시함수를 사용
+				MessageDigest md = MessageDigest.getInstance("SHA-512");
 				// key-stretching
 				for(int i = 0; i < 1000; i++) {
-					String temp = Password + Salt;			// 패스워드와 Salt 를 합쳐 새로운 문자열 생성
-					md.update(temp.getBytes());				// temp 의 문자열을 해싱하여 md 에 저장해둔다
-					Password = Byte_to_String(md.digest());	// md 객체의 다이제스트를 얻어 password 를 갱신한다
+					// Add salt
+					String temp = Password + Salt;
+					md.update(temp.getBytes());
+					// Get digest
+					Password = BtS(md.digest());
 				}
 				if (rs.getString(1).equals(Password)) {
-					// loginFail 0으로 수정
+					// loginFail -> 0
 					String fail = "UPDATE USER SET loginFail = 0 WHERE userID = ?";
 					pstmt = conn.prepareStatement(fail);
 					pstmt.setString(1,  userID);
 					pstmt.executeUpdate();
-					return 1; // 로그인 성공
+					// Success
+					return 1;
 				} else {
 					if(rs.getInt(3) == 4){
-						// loginFail 0으로 수정, isLock Y로 수정
+						// loginFail -> 0, isLock -> 1
 						String fail = "UPDATE USER SET loginFail = 0 WHERE userID = ?";
 						pstmt = conn.prepareStatement(fail);
 						pstmt.setString(1,  userID);
@@ -80,17 +81,19 @@ public class UserDAO {
 						pstmt.setString(2,  userID);
 						pstmt.executeUpdate();
 					}
-					return 0; // 비밀번호 불일치
+					// Wrong Password
+					return 0;
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
-		return -2; // 데이터베이스 오류
+		}
+		// DB Error
+		return -2;
 	}
 
-	// 바이트 값을 16진수로 변경해준다
-	private String Byte_to_String(byte[] temp) {
+	// Byte to String
+	private String BtS(byte[] temp) {
 		StringBuilder sb = new StringBuilder();
 		for(byte a : temp) {
 			sb.append(String.format("%02x", a));
@@ -103,15 +106,14 @@ public class UserDAO {
 		SecureRandom rnd = new SecureRandom();
 		byte[] salt = new byte[20];
 		rnd.nextBytes(salt);
-		String Salt = Byte_to_String(salt);
+		String Salt = BtS(salt);
 		String Password = user.getUserPassword();
-		// 비밀번호 해싱
-		MessageDigest md = MessageDigest.getInstance("SHA-256");// SHA-256 해시함수를 사용
+		MessageDigest md = MessageDigest.getInstance("SHA-256");
 		// key-stretching
 		for(int i = 0; i < 1000; i++) {
-			String temp = Password + Salt;	// 패스워드와 Salt 를 합쳐 새로운 문자열 생성
-			md.update(temp.getBytes());						// temp 의 문자열을 해싱하여 md 에 저장해둔다
-			Password = Byte_to_String(md.digest());			// md 객체의 다이제스트를 얻어 password 를 갱신한다
+			String temp = Password + Salt;
+			md.update(temp.getBytes());
+			Password = BtS(md.digest());
 		}
 
 		try {
@@ -127,6 +129,7 @@ public class UserDAO {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		// DB Error
 		return -1;
 	}
 }

@@ -25,7 +25,7 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('Already logged in.')");
-		script.println("location.href = 'main.jsp'");
+		script.println("location.href = 'home.jsp'");
 		script.println("history.back()");
 		script.println("</script>");
 	}
@@ -50,7 +50,7 @@
 			session.setAttribute("userID", user.getUserID());
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("location.href = 'main.jsp'");
+			script.println("location.href = 'home.jsp'");
 			script.println("</script>");
 		}
 	}
