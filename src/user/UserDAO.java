@@ -34,7 +34,7 @@ public class UserDAO {
 			rs = pstmt.executeQuery();
 			Boolean checkID = rs.next();
 			if (checkID == false) {
-				return -1; // 아이디가 없음
+				return -1; // Wrong ID
 			} else {
 				int checkLock = rs.getInt(4);
 				Boolean check = (checkLock == 1);
